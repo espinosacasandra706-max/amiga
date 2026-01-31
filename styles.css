@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("snoopy.jpg") center/cover no-repeat fixed;
+}
+
+/* Capa semi-transparente para mejorar legibilidad */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(251, 233, 231, 0.55);
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 520px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  color: #d81b60;
+  font-size: 2rem;
+  text-align: center;
+  margin: 20px 0 30px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: calc(100% - 140px);
+  max-height: 680px;
+  z-index: 2;
+}
+
+.flip-card {
+  perspective: 1400px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-style: preserve-3d;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.flip-card-back {
+  background: rgba(255, 245, 247, 0.92);
+  transform: rotateY(180deg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.5;
+  backdrop-filter: blur(5px);
+}
+
+.flip-card-back p {
+  margin: 0;
+}
+
+/* Reproductor de música - esquina superior derecha */
+.music-player {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 10px 16px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.music-player button {
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 80px;
+}
+
+.music-player input[type="range"] {
+  width: 100px;
+  accent-color: #e91e63;
+}
